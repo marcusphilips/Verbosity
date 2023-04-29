@@ -1,5 +1,12 @@
 #include "definition.hpp"
 
+/// @brief Default Constructor; Do Not Use
+Definition::Definition() : definitions{nullptr}, numDefintions{0}
+{
+}
+
+/// @brief The good constructor
+/// @param line 
 Definition::Definition(const std::string line) : numDefintions{1}
 {
     for (size_t i = 0; i < line.size(); i++){
@@ -38,4 +45,22 @@ std::string Definition::operator[](const uchar i) const
 Definition::~Definition()
 {
     delete[] definitions;
+}
+
+Definition::Definition(const Definition &other)
+{
+    this->numDefintions = other.numDefintions;
+    this->definitions = new std::string[numDefintions];
+    for(uchar i = 0; i < this->numDefintions; i++){
+        this->definitions[i] = other.definitions[i];
+    }
+}
+
+Definition &Definition::operator=(const Definition &rhs)
+{
+    // TODO: insert return statement here
+    if (this != &rhs){
+        
+    }
+    return *this;
 }

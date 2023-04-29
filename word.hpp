@@ -9,9 +9,16 @@ class Word{
     uchar numDefinitions;
     uchar capacity;
     public:
-    Word(std::string word, Definition define);
-    uchar addDefinition(Definition oneMoreDefinition);
+    Word(const std::string word, const Definition define);
+    uchar addDefinition(const Definition oneMoreDefinition);
     std::string getWord() const;
+    
+    // rule of five
+    ~Word();
+    Word(const Word& other);
+    Word& operator=(const Word& rhs);
+    Word(const Word&& other);
+    Word& operator=(const Word&& rhs);
 };
 
 #endif

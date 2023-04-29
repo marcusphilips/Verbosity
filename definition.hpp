@@ -12,6 +12,7 @@ class Definition{
     // I don't think anyone line has more than 255 semicolons
     uchar numDefintions;
     public:
+    Definition();
     Definition(const std::string line);
     
     uchar size() const;
@@ -22,8 +23,8 @@ class Definition{
     ~Definition();
     Definition(const Definition& other);
     Definition& operator=(const Definition& rhs);
-    Definition(Definition&& other);
-    Definition& operator=(Definition&& rhs);
+    Definition(const Definition&& other);
+    Definition& operator=(const Definition&& rhs);
 };
 
 #endif
