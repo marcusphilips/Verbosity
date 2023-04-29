@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include "definition.hpp"
+#include "word.hpp"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ bool shouldDisqualify(string* spliced){
 
 int main(/*int argc, char** argv*/)
 {
+    vector<Word> dictionary;
     ifstream ifs;
     ifs.open("small.csv");
     string line;
