@@ -6,12 +6,13 @@
 class Word{
     std::string word;
     Definition* majorDefintions;
-    uchar numDefinitions;
+    uchar size;
     uchar capacity;
     public:
     Word(const std::string word, const Definition define);
     uchar addDefinition(const Definition oneMoreDefinition);
     std::string getWord() const;
+    Definition operator[](const uchar i) const;
     
     // rule of five
     ~Word();

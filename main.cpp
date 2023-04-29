@@ -23,20 +23,23 @@ string *spliceSpecial(const string line)
     return spliced;
 }
 
+bool shouldDisqualify(string* spliced){
+    if (spliced[2].size() == 0)
+        return false;
+    return true;
+}
+
 int main(/*int argc, char** argv*/)
 {
     ifstream ifs;
-    ifs.open("dictionary.csv");
+    ifs.open("small.csv");
     string line;
     while(getline(ifs, line)){
         string *spliced = spliceSpecial(line);
-        Definition d(spliced[3]);
-                  
-        for (uchar i = 0; i < d.size(); i++){
-            cout << d[i] << "$ ";
+        for (uchar i = 0; i < 4; i++){
+            cout << spliced[i] << "$";
         }
         cout << endl;
-        
     }
     return 0;
 }

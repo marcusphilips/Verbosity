@@ -1,6 +1,7 @@
 #ifndef DEFINITION_HPP
 #define DEFINITION_HPP
 #include <string>
+#include "partOfSpeech.hpp"
 
 #define uchar unsigned char
 
@@ -11,9 +12,10 @@ class Definition{
     std::string* definitions;
     // I don't think anyone line has more than 255 semicolons
     uchar numDefintions;
+    PartOfSpeech pos;
     public:
     Definition();
-    Definition(const std::string line);
+    Definition(const std::string line, const PartOfSpeech pos);
     
     uchar size() const;
     std::string operator[](const uchar i) const;
@@ -23,8 +25,8 @@ class Definition{
     ~Definition();
     Definition(const Definition& other);
     Definition& operator=(const Definition& rhs);
-    Definition(const Definition&& other);
-    Definition& operator=(const Definition&& rhs);
+    Definition(Definition&& other);
+    Definition& operator=(Definition&& rhs);
 };
 
 #endif

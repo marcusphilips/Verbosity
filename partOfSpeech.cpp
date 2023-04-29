@@ -1,7 +1,7 @@
 #include "partOfSpeech.hpp"
 
 /// @brief Converts string please strip quotes in the beginning and in the end
-/// @param input 
+/// @param input
 /// @return PartOfSpeech state
 PartOfSpeech PartOfSpeechInterpreter::fromString(const std::string input)
 {
