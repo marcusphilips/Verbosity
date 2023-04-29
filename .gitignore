@@ -1,1 +1,6 @@
 /.vscode/
+/CMakeFiles/
+*.cmake
+*.txt
+Makefile
+*.out

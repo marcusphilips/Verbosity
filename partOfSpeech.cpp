@@ -3,7 +3,7 @@
 /// @brief Converts string please strip quotes in the beginning and in the end
 /// @param input 
 /// @return PartOfSpeech state
-PartOfSpeech PartOfSpeechInterpreter::fromString(const char *input)
+PartOfSpeech PartOfSpeechInterpreter::fromString(const std::string input)
 {
     /*
     NOUN,
@@ -33,7 +33,7 @@ PartOfSpeech PartOfSpeechInterpreter::fromString(const char *input)
         return IRRELEVANT;
 }
 
-char* PartOfSpeechInterpreter::toString(const PartOfSpeech part)
+std::string PartOfSpeechInterpreter::toString(const PartOfSpeech part)
 {
     /*
     NOUN,
