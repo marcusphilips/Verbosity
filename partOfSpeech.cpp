@@ -1,5 +1,8 @@
 #include "partOfSpeech.hpp"
 
+/// @brief Converts string please strip quotes in the beginning and in the end
+/// @param input 
+/// @return PartOfSpeech state
 PartOfSpeech PartOfSpeechInterpreter::fromString(const char *input)
 {
     /*
@@ -28,4 +31,34 @@ PartOfSpeech PartOfSpeechInterpreter::fromString(const char *input)
     else
         // there are other parts of speech but they are too niche or I am too lazy to look up
         return IRRELEVANT;
+}
+
+char* PartOfSpeechInterpreter::toString(const PartOfSpeech part)
+{
+    /*
+    NOUN,
+    PRONOUN,
+    VERB,
+    ADJECTIVE,
+    ADVERB,
+    PREPOSITION,
+    IRRELEVANT
+    */
+    switch (part)
+    {
+    case NOUN:
+        return "noun";
+    case PRONOUN:
+        return "pronoun";
+    case VERB:
+        return "verb";
+    case ADJECTIVE:
+        return "adjective";
+    case ADVERB:
+        return "adverb";
+    case PREPOSITION:
+        return "preposition";
+    default:
+        return "";
+    }
 }

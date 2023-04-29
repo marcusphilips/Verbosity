@@ -1,6 +1,5 @@
 #ifndef PARTOFSPEECH_HPP
 #define PARTOFSPEECH_HPP
-#include <string>
 
 enum PartOfSpeech{
     NOUN,
@@ -14,7 +13,7 @@ enum PartOfSpeech{
 
 class PartOfSpeechInterpreter{
     static PartOfSpeech fromString(const char* input);
-    static std::string toString(PartOfSpeech part);
+    static char* toString(const PartOfSpeech part);
 };
 
 #endif
