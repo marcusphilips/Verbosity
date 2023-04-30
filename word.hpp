@@ -3,23 +3,25 @@
 
 #include "definition.hpp"
 
-class Word{
+class Word
+{
     std::string word;
-    Definition* majorDefintions;
+    Definition *majorDefintions;
     uchar size;
     uchar capacity;
-    public:
+
+public:
     Word(const std::string word, const Definition define);
     uchar addDefinition(const Definition oneMoreDefinition);
     std::string getWord() const;
     Definition operator[](const uchar i) const;
-    
+
     // rule of five
     ~Word();
-    Word(const Word& other);
-    Word& operator=(const Word& rhs);
-    Word(const Word&& other);
-    Word& operator=(const Word&& rhs);
+    Word(const Word &other);
+    Word &operator=(const Word &rhs);
+    Word(Word &&other);
+    Word &operator=(Word &&rhs);
 };
 
 #endif

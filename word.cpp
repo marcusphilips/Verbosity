@@ -57,11 +57,38 @@ Word::Word(const Word &other)
     }
 }
 
+/// @brief Assignment Constructor
+/// @param rhs 
+/// @return 
 Word &Word::operator=(const Word &rhs)
 {
     if (this != &rhs){
         delete[] this->majorDefintions;
-        
+        this->word = rhs.word;
+        this->capacity = rhs.capacity;
+        this->size = rhs.size;
+        this->majorDefintions = new Definition[rhs.capacity];
+        for (uchar i = 0; i < this->size; i++){
+            this->majorDefintions[i] = rhs.majorDefintions[i];
+        }
+    }
+    return *this;
+}
+
+Word::Word(Word &&other)
+{
+    this->word = word;
+    this->capacity = other.capacity;
+    this->size = other.size;
+    this->majorDefintions = other.majorDefintions;
+    other.majorDefintions = nullptr;
+}
+
+Word &Word::operator=(Word &&rhs)
+{
+    if (this != &rhs)
+    {
+
     }
     return *this;
 }

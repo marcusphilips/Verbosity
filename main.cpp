@@ -24,20 +24,33 @@ string *spliceSpecial(const string line)
     return spliced;
 }
 
-bool shouldDisqualify(string* spliced){
-    if (spliced[2].size() == 0)
-        return false;
-    return true;
+bool shouldDisqualify(const string* spliced){
+    // word is too small
+    if (spliced[0].size() < 4)
+        return true;
+    // word is too big
+    if (spliced[0].size() > 15)
+        return true;
+    return false;
 }
 
 int main(/*int argc, char** argv*/)
 {
     vector<Word> dictionary;
     ifstream ifs;
-    ifs.open("small.csv");
+    ifs.open("dictionary.csv");
     string line;
+    // skips the first line which is just the column names
+    getline(ifs, line);
     while(getline(ifs, line)){
         string *spliced = spliceSpecial(line);
+        // do not add words that are less than 4 characters; too easy to brute force
+        if (shouldDisqualify(spliced))
+        {
+            delete[] spliced;
+            continue;
+        }
+    
         for (uchar i = 0; i < 4; i++){
             cout << spliced[i] << "$";
         }
