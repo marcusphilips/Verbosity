@@ -111,7 +111,42 @@ int main(/*int argc, char** argv*/)
             cout << "\nThe word could mean " << ANSWER[i][0] << " or " << ANSWER[i][1] << ".";
         }
     }
-    cout << "\nThe word begins with the letter \"" << ANSWER.getWord().at(0) << "\"." << endl;
+    cout << "\nThe word begins with the letter \"" << ANSWER.getWord().at(0) << "\".";
+    // find vowels
+    bool arr[] = {false, false, false, false, false};
+    for (const char c : ANSWER.getWord())
+    {
+        switch (c)
+        {
+        case 'a':
+            arr[0] = true;
+            break;
+        case 'e':
+            arr[1] = true;
+            break;
+        case 'i':
+            arr[2] = true;
+            break;
+        case 'o':
+            arr[3] = true;
+            break;
+        case 'u':
+            arr[4] = true;
+            break;
+        }
+    }
+    cout << "\nThe word contains the following vowels: ";
+    if (arr[0])
+        cout << "a ";
+    if (arr[1])
+        cout << "e ";
+    if (arr[2])
+        cout << "i ";
+    if (arr[3])
+        cout << "o ";
+    if (arr[4])
+        cout << "u ";
+    cout << endl;
     while (true)
     {
         cout << "Guess an answer:" << endl;
