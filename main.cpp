@@ -3,6 +3,7 @@
 #include <vector>
 #include "definition.hpp"
 #include "word.hpp"
+#include "partOfSpeech.hpp"
 
 using namespace std;
 
@@ -29,8 +30,9 @@ bool shouldDisqualify(const string* spliced){
     if (spliced[0].size() < 4)
         return true;
     // word is too big
-    if (spliced[0].size() > 15)
+    if (spliced[0].size() > 16)
         return true;
+    
     return false;
 }
 
@@ -50,11 +52,13 @@ int main(/*int argc, char** argv*/)
             delete[] spliced;
             continue;
         }
-    
-        for (uchar i = 0; i < 4; i++){
-            cout << spliced[i] << "$";
+        PartOfSpeech pos = PartOfSpeechInterpreter().fromString(spliced[2]);
+        Definition d(spliced[3], pos);
+        for (uchar i = 0; i < d.size(); i++){
+            cout << d[i] << "$";
         }
         cout << endl;
     }
+    ifs.close();
     return 0;
 }

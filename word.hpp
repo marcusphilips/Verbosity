@@ -12,9 +12,10 @@ class Word
 
 public:
     Word(const std::string word, const Definition &define);
-    uchar addDefinition(const Definition oneMoreDefinition);
+    uchar addDefinition(const Definition& oneMoreDefinition);
     std::string getWord() const;
     Definition operator[](const uchar i) const;
+    bool operator<(const Word& rhs) const;
 
     // rule of five
     ~Word();

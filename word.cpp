@@ -10,7 +10,7 @@ Word::Word(const std::string word, const Definition &define) : word{word}, size{
 /// @brief Adds a major defintion
 /// @param oneMoreDefinition
 /// @return the new size of the object
-uchar Word::addDefinition(const Definition oneMoreDefinition)
+uchar Word::addDefinition(const Definition& oneMoreDefinition)
 {
     if (this->capacity == this->size)
     {
@@ -44,6 +44,11 @@ std::string Word::getWord() const
 Definition Word::operator[](const uchar i) const
 {
     return majorDefintions[i];
+}
+
+bool Word::operator<(const Word &rhs) const
+{
+    return this->word < rhs.word;
 }
 
 Word::~Word()
@@ -95,6 +100,11 @@ Word &Word::operator=(Word &&rhs)
 {
     if (this != &rhs)
     {
+        this->majorDefintions = rhs.majorDefintions;
+        this->capacity = rhs.capacity;
+        this->size = rhs.size;
+        this->word = rhs.word;
+        rhs.majorDefintions = nullptr;
     }
     return *this;
 }

@@ -14,6 +14,7 @@ enum PartOfSpeech{
 };
 
 class PartOfSpeechInterpreter{
+    public:
     static PartOfSpeech fromString(const std::string input);
     static std::string toString(const PartOfSpeech part);
 };
