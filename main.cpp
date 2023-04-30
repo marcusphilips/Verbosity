@@ -21,7 +21,7 @@ string *spliceSpecial(const string line)
         spliced[2] = "";
     else
         spliced[2] = spliced[2].substr(3, spliced[2].size() - 6);
-    spliced[3] = spliced[3].substr(3, spliced[3].size() - 7);
+    spliced[3] = spliced[3].substr(3, spliced[3].size() - 6);
     return spliced;
 }
 
@@ -40,7 +40,7 @@ int main(/*int argc, char** argv*/)
 {
     vector<Word> dictionary;
     ifstream ifs;
-    ifs.open("dictionary.csv");
+    ifs.open("small.csv");
     string line;
     // skips the first line which is just the column names
     getline(ifs, line);

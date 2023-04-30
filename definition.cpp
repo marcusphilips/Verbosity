@@ -9,6 +9,7 @@ Definition::Definition() : definitions{nullptr}, numDefintions{0}, pos{IRRELEVAN
 /// @param line
 Definition::Definition(const std::string line, const PartOfSpeech pos) : numDefintions{1}, pos(pos)
 {
+    // count the number of semicolons ie subdefs
     for (size_t i = 0; i < line.size(); i++)
     {
         if (line[i] == ';')
@@ -31,7 +32,8 @@ Definition::Definition(const std::string line, const PartOfSpeech pos) : numDefi
         else
         {
             definitions[i] = truncate.substr(0, truncate.find(';'));
-            truncate = truncate.substr(truncate.find(';') + 1);
+            // skip the space that comes after the semicolon
+            truncate = truncate.substr(truncate.find(';') + 2);
         }
     }
 }

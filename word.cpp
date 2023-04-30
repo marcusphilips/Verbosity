@@ -3,6 +3,7 @@
 Word::Word(const std::string word, const Definition &define) : word{word}, size{1},
                                                                capacity{1}
 {
+    // make first letter lowercase
     majorDefintions = new Definition[1];
     majorDefintions[0] = Definition(define);
 }
