@@ -1,6 +1,6 @@
 #include "word.hpp"
 
-Word::Word(const std::string word, const Definition &define) : word{word}, size{1},
+Word::Word(const std::string word, const Definition &define) : word(word), size{1},
                                                                capacity{1}
 {
     // make first letter lowercase
@@ -25,6 +25,7 @@ uchar Word::addDefinition(const Definition& oneMoreDefinition)
         Definition *temp = this->majorDefintions;
         majorDefintions = ns;
         delete[] temp;
+        size++;
     }
     else
     {
@@ -59,6 +60,7 @@ Word::~Word()
 
 Word::Word(const Word &other)
 {
+    this->word = other.word;
     this->capacity = other.capacity;
     this->size = other.size;
     this->majorDefintions = new Definition[this->capacity];
@@ -90,7 +92,7 @@ Word &Word::operator=(const Word &rhs)
 
 Word::Word(Word &&other)
 {
-    this->word = word;
+    this->word = other.word;
     this->capacity = other.capacity;
     this->size = other.size;
     this->majorDefintions = other.majorDefintions;

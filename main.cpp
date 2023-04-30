@@ -60,19 +60,20 @@ int main(/*int argc, char** argv*/)
         Definition d(spliced[3], pos);
         Word w = Word(spliced[0], d);
         dictionary.push_back(w);
-        cout << dictionary.back().getWord() << endl;
+        // cout << dictionary.back().getWord() << endl;
     }
     vector<Word> old_order = dictionary;
     sort(dictionary.begin(), dictionary.end());
     // is our dictionary.csv out of sequence?
+    
     for (size_t i = 0; i < dictionary.size(); i++){
         if (dictionary[i].getWord() != old_order[i].getWord())
         {
             cout << "OOS word: " << dictionary[i].getWord() << " vs " << old_order[i].getWord() << endl;
         }
-        else {
-            cout << "Equivalence found for " << dictionary[i].getWord() << endl;
-        }
+        // else {
+        //     cout << "Equivalence found for " << dictionary[i].getWord() << endl;
+        // }
     }
     ifs.close();
     return 0;

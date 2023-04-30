@@ -79,6 +79,7 @@ Definition &Definition::operator=(const Definition &rhs)
         this->pos = rhs.pos;
         // delete old data
         delete[] this->definitions;
+        this->definitions = new std::string[this->numDefintions];
         for (uchar i = 0; i < numDefintions; i++)
         {
             this->definitions[i] = rhs.definitions[i];
