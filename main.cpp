@@ -89,7 +89,8 @@ int main(/*int argc, char** argv*/)
     const Word ANSWER = dictionary.at((int)(((double)g1() / (double)g1.max()) * dictionary.size()));
     //cout << ANSWER.getWord() << endl;
     cout << "Here are some clues:\n"
-         << "The word is a(n) " << PartOfSpeechInterpreter().toString(ANSWER[0].getPartOfSpeech()) << endl;
+         << "The word is a(n) " << PartOfSpeechInterpreter().toString(ANSWER[0].getPartOfSpeech())
+         << "\nOne defintion of the word is " << ANSWER[0][0] << endl;
     while (true)
     {
         cout << "Guess an answer:" << endl;
