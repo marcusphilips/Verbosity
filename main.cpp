@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
+#include <random>
 #include "definition.hpp"
 #include "word.hpp"
 #include "partOfSpeech.hpp"
@@ -62,7 +64,7 @@ int main(/*int argc, char** argv*/)
         }
         PartOfSpeech pos = PartOfSpeechInterpreter().fromString(part);
         if (pos == IRRELEVANT){
-            cout << "Invalid Part of Speech: " << part << endl;
+            // cout << "Invalid Part of Speech: " << part << endl;
             delete[] spliced;
             continue;
         }
@@ -72,20 +74,32 @@ int main(/*int argc, char** argv*/)
         delete[] spliced;
         // cout << dictionary.back().getWord() << endl;
     }
-    vector<Word> old_order = dictionary;
     sort(dictionary.begin(), dictionary.begin() + dictionary.size());
     // is our dictionary.csv out of sequence?
     // Yes, somewhat it is but it is too much work to sort the csv file so I'll just leave 
     // the program to sort it even though it costs some runtime
-    for (size_t i = 0; i < dictionary.size(); i++){
-        if (dictionary[i].getWord() != old_order[i].getWord())
-        {
-            cout << "OOS word: " << dictionary.at(i).getWord() << " vs " << old_order.at(i).getWord() << endl;
+    random_device rd;
+    unsigned seed1 = chrono::system_clock::now().time_since_epoch().count();
+    // some one on stack overflow said this was the better RNG
+    mt19937 g1 (seed1);
+    const Word ANSWER = dictionary.at((int)(((double)g1()/(double)g1.max())*dictionary.size()));
+    cout << ANSWER.getWord()<< endl;
+    cout << "Here are some clues:\n"
+        << "The word is a(n) " ;
+    while (true){
+        cout << "Guess an answer:" << endl;
+        string input;
+        cin >> input;
+        if (input == ANSWER.getWord()){
+            cout << "You've found the answer!" << endl;
+            break;
+        }
+        else if (input < ANSWER.getWord()){
+            cout << "Go Down" << endl;
         }
         else {
-            cout << "Equivalence found for " << dictionary[i].getWord() << endl;
+            cout << "Go Up" << endl;
         }
     }
-    ifs.close();
     return 0;
 }
