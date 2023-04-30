@@ -56,24 +56,35 @@ int main(/*int argc, char** argv*/)
             delete[] spliced;
             continue;
         }
-        PartOfSpeech pos = PartOfSpeechInterpreter().fromString(spliced[2]);
+        string part = spliced[2];
+        if (part.find('&') != string::npos){
+            part = part.substr(0, part.find('&'));
+        }
+        PartOfSpeech pos = PartOfSpeechInterpreter().fromString(part);
+        if (pos == IRRELEVANT){
+            cout << "Invalid Part of Speech: " << spliced[2] << endl;
+            delete[] spliced;
+            continue;
+        }
         Definition d(spliced[3], pos);
         Word w = Word(spliced[0], d);
         dictionary.push_back(w);
+        delete[] spliced;
         // cout << dictionary.back().getWord() << endl;
     }
     vector<Word> old_order = dictionary;
-    sort(dictionary.begin(), dictionary.end());
+    sort(dictionary.begin(), dictionary.begin() + dictionary.size());
     // is our dictionary.csv out of sequence?
-    
+    // Yes, somewhat it is but it is too much work to sort the csv file so I'll just leave 
+    // the program to sort it even though it costs some runtime
     for (size_t i = 0; i < dictionary.size(); i++){
         if (dictionary[i].getWord() != old_order[i].getWord())
         {
-            cout << "OOS word: " << dictionary[i].getWord() << " vs " << old_order[i].getWord() << endl;
+            cout << "OOS word: " << dictionary.at(i).getWord() << " vs " << old_order.at(i).getWord() << endl;
         }
-        // else {
-        //     cout << "Equivalence found for " << dictionary[i].getWord() << endl;
-        // }
+        else {
+            cout << "Equivalence found for " << dictionary[i].getWord() << endl;
+        }
     }
     ifs.close();
     return 0;

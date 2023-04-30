@@ -17,10 +17,10 @@ PartOfSpeech PartOfSpeechInterpreter::fromString(const std::string input)
     // Apparently you can't use switch statements with strings or const char*
     if (input == "n.")
         return NOUN;
-    if (input == "obj.")
+    if (input == "obj." || input == "pron.")
         // don't ask me why; the data is scraped from a dictionary from 1910 or so
         return PRONOUN;
-    if (input == "v. t." || input == "v. i.")
+    if (input == "v. t." || input == "v. i." || input == "v.")
         return VERB;
     if (input == "a.")
         return ADJECTIVE;
