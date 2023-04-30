@@ -58,11 +58,11 @@ int main(/*int argc, char** argv*/)
         }
         string part = spliced[2];
         if (part.find('&') != string::npos){
-            part = part.substr(0, part.find('&'));
+            part = part.substr(0, part.find('&') - 1);
         }
         PartOfSpeech pos = PartOfSpeechInterpreter().fromString(part);
         if (pos == IRRELEVANT){
-            cout << "Invalid Part of Speech: " << spliced[2] << endl;
+            cout << "Invalid Part of Speech: " << part << endl;
             delete[] spliced;
             continue;
         }

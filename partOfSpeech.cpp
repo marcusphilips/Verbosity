@@ -15,7 +15,7 @@ PartOfSpeech PartOfSpeechInterpreter::fromString(const std::string input)
     IRRELEVANT
     */
     // Apparently you can't use switch statements with strings or const char*
-    if (input == "n.")
+    if (input == "n." || input == "n. sing.")
         return NOUN;
     if (input == "obj." || input == "pron.")
         // don't ask me why; the data is scraped from a dictionary from 1910 or so
@@ -28,6 +28,8 @@ PartOfSpeech PartOfSpeechInterpreter::fromString(const std::string input)
         return ADVERB;
     if (input == "prep.")
         return PREPOSITION;
+    if (input == "conj.")
+        return CONJUNCTION;
     else
         // there are other parts of speech but they are too niche or I am too lazy to look up
         return IRRELEVANT;
@@ -58,6 +60,8 @@ std::string PartOfSpeechInterpreter::toString(const PartOfSpeech part)
         return "adverb";
     case PREPOSITION:
         return "preposition";
+    case CONJUNCTION:
+        return "conjunction";
     default:
         return "";
     }

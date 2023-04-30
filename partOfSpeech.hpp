@@ -10,6 +10,7 @@ enum PartOfSpeech{
     ADJECTIVE,
     ADVERB,
     PREPOSITION,
+    CONJUNCTION,
     IRRELEVANT
 };
 
