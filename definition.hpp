@@ -19,6 +19,7 @@ class Definition{
     
     uchar size() const;
     std::string operator[](const uchar i) const;
+    PartOfSpeech getPartOfSpeech() const;
 
     // rule of five
 

@@ -48,6 +48,11 @@ std::string Definition::operator[](const uchar i) const
     return definitions[i];
 }
 
+PartOfSpeech Definition::getPartOfSpeech() const
+{
+    return this->pos;
+}
+
 /// @brief Destructor
 Definition::~Definition()
 {
