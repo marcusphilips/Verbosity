@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include "definition.hpp"
 #include "word.hpp"
 #include "partOfSpeech.hpp"
@@ -39,7 +40,10 @@ bool shouldDisqualify(const string* spliced){
 int main(/*int argc, char** argv*/)
 {
     vector<Word> dictionary;
+    dictionary.reserve(145000);
     ifstream ifs;
+    // in retrospect maybe using a dictionary that was based off and printed in 1913 
+    // was not the best choiceh
     ifs.open("small.csv");
     string line;
     // skips the first line which is just the column names
@@ -54,10 +58,17 @@ int main(/*int argc, char** argv*/)
         }
         PartOfSpeech pos = PartOfSpeechInterpreter().fromString(spliced[2]);
         Definition d(spliced[3], pos);
-        for (uchar i = 0; i < d.size(); i++){
-            cout << d[i] << "$";
-        }
+        dictionary.push_back(Word(spliced[0], d));
         cout << endl;
+    }
+    vector<Word> old_order = dictionary;
+    sort(dictionary.begin(), dictionary.end());
+    // is our dictionary.csv out of sequence?
+    for (size_t i = 0; i < dictionary.size(); i++){
+        if (dictionary[i].getWord() == old_order[i].getWord())
+        {
+            cout << "OOS word: " << dictionary[i].getWord() << " vs " << old_order[i].getWord() << endl;
+        }
     }
     ifs.close();
     return 0;
