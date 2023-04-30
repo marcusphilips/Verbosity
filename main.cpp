@@ -24,7 +24,8 @@ string *spliceSpecial(const string line)
         spliced[2] = "";
     else
         spliced[2] = spliced[2].substr(3, spliced[2].size() - 6);
-    spliced[3] = spliced[3].substr(3, spliced[3].size() - 6);
+    spliced[3] = spliced[3].substr(3);
+    spliced[3] = spliced[3].substr(0, spliced[3].size() - 3);
     return spliced;
 }
 
@@ -75,10 +76,12 @@ int main(/*int argc, char** argv*/)
         Definition d(spliced[3], pos);
         // change the first character of the word to all lowercase
         spliced[0][0] += 32;
-        if (!dictionary.empty() && dictionary.back().getWord() == spliced[0]){
+        if (!dictionary.empty() && dictionary.back().getWord() == spliced[0])
+        {
             dictionary.back().addDefinition(d);
         }
-        else{
+        else
+        {
             Word w = Word(spliced[0], d);
             dictionary.push_back(w);
         }
@@ -96,13 +99,19 @@ int main(/*int argc, char** argv*/)
     const Word ANSWER = dictionary.at((int)(((double)g1() / (double)g1.max()) * dictionary.size()));
     cout << ANSWER.getWord() << endl;
     cout << "Here are some clues:\n"
-         << "The word is a(n) " << PartOfSpeechInterpreter().toString(ANSWER[0].getPartOfSpeech())
-         << "\nOne defintion of the word is " << ANSWER[0][0];
-    for (uchar i = 1; i < ANSWER.getSize(); i++){
-        cout << "\nAnother definition of the word is " << ANSWER[i][0] << endl;
+         << "The word is a(n) " << PartOfSpeechInterpreter().toString(ANSWER[0].getPartOfSpeech()) << "."
+         << "\nOne defintion of the word is " << ANSWER[0][0] << "."
+         << "\nThis word has " << (int)ANSWER.getSize() << " different meaning(s).";
+    for (uchar i = 1; i < ANSWER.getSize(); i++)
+    {
+        if (ANSWER[i].size() == 1)
+            cout << "\nAnother definition of the word is " << ANSWER[i][0] << ".";
+        else
+        {
+            cout << "\nThe word could mean " << ANSWER[i][0] << " or " << ANSWER[i][1] << ".";
+        }
     }
-    cout << "\nThis word has " << (int)ANSWER.getSize() << " different meaning(s)."
-         << "\nThe word begins with the letter \"" << ANSWER.getWord().at(0) << "\"" << endl;
+    cout << "\nThe word begins with the letter \"" << ANSWER.getWord().at(0) << "\"." << endl;
     while (true)
     {
         cout << "Guess an answer:" << endl;

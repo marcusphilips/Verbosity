@@ -21,6 +21,16 @@ Definition::Definition(const std::string line, const PartOfSpeech pos) : numDefi
     if (numDefintions == 1)
     {
         definitions[0] = line;
+        // correct case
+        definitions[0][0] += 32;
+        if (definitions[0].back() == '\"')
+        {
+            definitions[0].pop_back();
+        }
+        if (definitions[0].back() == '.')
+        {
+            definitions[0].pop_back();
+        }
         return;
     }
     std::string truncate = line;
@@ -28,10 +38,25 @@ Definition::Definition(const std::string line, const PartOfSpeech pos) : numDefi
     {
         // at the last splice
         if (i + 1 == numDefintions)
+        {
             definitions[i] = truncate;
+            // clean up splicing
+            if (definitions[i].back() == '\"')
+            {
+                definitions[i].pop_back();
+            }
+            if (definitions[i].back() == '.')
+            {
+                definitions[i].pop_back();
+            }
+        }
         else
         {
             definitions[i] = truncate.substr(0, truncate.find(';'));
+            if (i == 0)
+            {
+                definitions[0][0] += 32;
+            }
             // skip the space that comes after the semicolon
             truncate = truncate.substr(truncate.find(';') + 2);
         }

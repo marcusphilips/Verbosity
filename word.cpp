@@ -21,6 +21,7 @@ uchar Word::addDefinition(const Definition& oneMoreDefinition)
         {
             ns[i] = majorDefintions[i];
         }
+        ns[size] = oneMoreDefinition;
         capacity = new_cap;
         Definition *temp = this->majorDefintions;
         majorDefintions = ns;
