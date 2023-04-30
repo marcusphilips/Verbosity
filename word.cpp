@@ -35,16 +35,23 @@ uchar Word::addDefinition(const Definition& oneMoreDefinition)
     return size;
 }
 
+uchar Word::getSize() const
+{
+    return this->size;
+}
+
 std::string Word::getWord() const
 {
     return word;
 }
 
-/// @brief Access a major definition. No bounds checking for minimum runtime.
+/// @brief Access a major definition.
 /// @param i
 /// @return
 Definition Word::operator[](const uchar i) const
 {
+    if (i >= size)
+        throw std::invalid_argument("Out of bounds");
     return majorDefintions[i];
 }
 

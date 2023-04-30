@@ -73,8 +73,15 @@ int main(/*int argc, char** argv*/)
             continue;
         }
         Definition d(spliced[3], pos);
-        Word w = Word(spliced[0], d);
-        dictionary.push_back(w);
+        // change the first character of the word to all lowercase
+        spliced[0][0] += 32;
+        if (!dictionary.empty() && dictionary.back().getWord() == spliced[0]){
+            dictionary.back().addDefinition(d);
+        }
+        else{
+            Word w = Word(spliced[0], d);
+            dictionary.push_back(w);
+        }
         delete[] spliced;
         // cout << dictionary.back().getWord() << endl;
     }
@@ -87,10 +94,15 @@ int main(/*int argc, char** argv*/)
     // some one on stack overflow said this was the better RNG
     mt19937 g1(seed1);
     const Word ANSWER = dictionary.at((int)(((double)g1() / (double)g1.max()) * dictionary.size()));
-    //cout << ANSWER.getWord() << endl;
+    cout << ANSWER.getWord() << endl;
     cout << "Here are some clues:\n"
          << "The word is a(n) " << PartOfSpeechInterpreter().toString(ANSWER[0].getPartOfSpeech())
-         << "\nOne defintion of the word is " << ANSWER[0][0] << endl;
+         << "\nOne defintion of the word is " << ANSWER[0][0];
+    for (uchar i = 1; i < ANSWER.getSize(); i++){
+        cout << "\nAnother definition of the word is " << ANSWER[i][0] << endl;
+    }
+    cout << "\nThis word has " << (int)ANSWER.getSize() << " different meaning(s)."
+         << "\nThe word begins with the letter \"" << ANSWER.getWord().at(0) << "\"" << endl;
     while (true)
     {
         cout << "Guess an answer:" << endl;

@@ -45,6 +45,8 @@ uchar Definition::size() const
 
 std::string Definition::operator[](const uchar i) const
 {
+    if (i >= numDefintions)
+        throw std::invalid_argument("Out of bounds");
     return definitions[i];
 }
 

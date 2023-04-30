@@ -1,6 +1,7 @@
 #ifndef DEFINITION_HPP
 #define DEFINITION_HPP
 #include <string>
+#include <stdexcept>
 #include "partOfSpeech.hpp"
 
 #define uchar unsigned char
