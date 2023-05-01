@@ -146,6 +146,48 @@ int main(/*int argc, char** argv*/)
         cout << "o ";
     if (arr[4])
         cout << "u ";
+    bool arr2[] = {false, false, false, false, false};
+    bool found = false;
+    for (const char c : ANSWER.getWord())
+    {
+        switch (c)
+        {
+        case 'v':
+            arr2[0] = true;
+            found = true;
+            break;
+        case 'x':
+            arr2[1] = true;
+            found = true;
+            break;
+        case 'z':
+            arr2[2] = true;
+            found = true;
+            break;
+        case 'j':
+            arr2[3] = true;
+            found = true;
+            break;
+        case 'q':
+            arr2[4] = true;
+            found = true;
+            break;
+        }
+    }
+    if (found)
+    {
+        cout << "\nThe word contains the following letters: ";
+        if (arr2[0])
+            cout << "v ";
+        if (arr2[1])
+            cout << "x ";
+        if (arr2[2])
+            cout << "z ";
+        if (arr2[3])
+            cout << "j ";
+        if (arr2[4])
+            cout << "q ";
+    }
     cout << endl;
     while (true)
     {
